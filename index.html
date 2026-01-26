@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Adhya ❤️ - From Aryan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-soft: #FFE4E1;
+      --pink-light: #FFB6C1;
+      --pink-medium: #FF69B4;
+      --red-romantic: #C71585;
+      --white: #FFFFFF;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, var(--pink-soft), #FFD1DC);
+      color: #333;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    .screen.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
+    }
+    h1, h2, .cursive {
+      font-family: 'Dancing Script', cursive;
+      color: var(--red-romantic);
+      margin-bottom: 20px;
+    }
+    p { font-size: 20px; line-height: 1.6; max-width: 90%; }
+    button {
+      background: var(--pink-medium);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(199,21,133,0.3);
+    }
+    button:hover { transform: scale(1.05); background: var(--red-romantic); }
+    .heart { font-size: 80px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    .card {
+      background: var(--pink-light);
+      padding: 40px 25px;
+      border-radius: 25px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+    .card:hover { transform: scale(1.03); }
+    .reveal-bar {
+      background: rgba(199,21,133,0.25);
+      padding: 18px;
+      margin: 15px 0;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.5s;
+      color: transparent;
+      position: relative;
+      text-align: center;
+      font-size: 18px;
+    }
+    .reveal-bar.revealed {
+      background: white;
+      color: #333;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .reveal-bar.revealed::before { content: none; }
+    .reveal-bar::before {
+      content: "❤️";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      opacity: 0.5;
+    }
+    .note-text {
+      font-size: 18px;
+      line-height: 1.7;
+      min-height: 200px;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+    .meter-bar {
+      background: #ddd;
+      height: 30px;
+      border-radius: 50px;
+      overflow: hidden;
+      width: 80%;
+      max-width: 400px;
+      margin: 20px 0;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, var(--pink-light), var(--pink-medium));
+      transition: width 4s ease-in-out;
+    }
+    .warning { color: var(--red-romantic); font-weight: bold; font-size: 22px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1: Greeting -->
+  <div class="screen active" id="screen1">
+    <div class="heart">❤️</div>
+    <h1>Hey Adhya, My Beautiful ❤️</h1>
+    <p>Do you even know how cute you are?</p>
+    <button onclick="goToScreen('screen2')">Open My Heart</button>
+  </div>
+
+  <!-- Screen 2: Compliments Reveal -->
+  <div class="screen" id="screen2">
+    <h2 class="cursive">Just for you, Adhya</h2>
+    <p>Tap each one to reveal 💕💕</p>
+    <div class="reveal-bar" data-text="You look absolutely stunning every single day">Tap to reveal</div>
+    <div class="reveal-bar" data-text="Your vibe is the sweetest thing ever">Tap to reveal</div>
+    <div class="reveal-bar" data-text="You make every moment feel magical">Tap to reveal</div>
+    <div class="reveal-bar" data-text="Your charm is natural and irresistible">Tap to reveal</div>
+    <div class="reveal-bar" data-text="You make my world complete since you said yes ❤️">Tap to reveal</div>
+    <button onclick="goToScreen('screen3')">Next →</button>
+  </div>
+
+  <!-- Screen 3: Envelope / Tap to Open -->
+  <div class="screen" id="screen3">
+    <h2 class="cursive">A little note for you</h2>
+    <div class="card" id="envelopeCard">
+      <div style="font-size:100px; margin:20px;">🎀❤️</div>
+      <p style="font-size:24px;">Tap to open</p>
+    </div>
+    <button onclick="goToScreen('screen4')" style="margin-top:40px;">Or skip to read →</button>
+  </div>
+
+  <!-- Screen 4: Typewriter Note -->
+  <div class="screen" id="screen4">
+    <h2 class="cursive">My Adhya ❤️</h2>
+    <div class="card">
+      <div class="note-text" id="noteText"></div>
+    </div>
+    <button onclick="goToScreen('screen5')">Continue →</button>
+  </div>
+
+  <!-- Screen 5: Cuteness Meter -->
+  <div class="screen" id="screen5">
+    <h2 class="cursive">Measuring your cuteness...</h2>
+    <div id="percent">0%</div>
+    <div class="meter-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <p id="calculating">Calculating cuteness...</p>
+    <p class="warning" id="warning" style="display:none;">⚠ TOO CUTE TO HANDLE (Adhya overload!)</p>
+    <button onclick="goToScreen('screen6')" style="margin-top:40px;">See the end →</button>
+  </div>
+
+  <!-- Screen 6: Closing -->
+  <div class="screen" id="screen6">
+    <div class="heart">❤️</div>
+    <h2 class="cursive">You'll always be special to me, Adhya</h2>
+    <p style="font-size:24px; margin-top:20px;">Forever yours,<br>Aryan ❤️</p>
+  </div>
+
+  <script>
+    // Go to next screen
+    function goToScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      
+      // Trigger typewriter only when note screen opens
+      if (id === 'screen4') startTypewriter();
+      // Trigger meter animation when meter screen opens
+      if (id === 'screen5') startMeter();
+    }
+
+    // Reveal compliments on tap
+    document.querySelectorAll('.reveal-bar').forEach(bar => {
+      bar.addEventListener('click', () => {
+        if (!bar.classList.contains('revealed')) {
+          bar.textContent = bar.dataset.text;
+          bar.classList.add('revealed');
+        }
+      });
+    });
+
+    // Typewriter effect for note
+    const noteContent = "Adhya, you have a really special way of making everything feel lighter 💖💗. Your kindness, honesty, and the way you talk make me smile every time 💕💞. I truly enjoy our conversations and little moments 😅🥰. I’m grateful to have you here 🤍💝, and I hope we keep growing together, calmly and happily 💘💓💌.";
+    let i = 0;
+    const noteElement = document.getElementById('noteText');
+
+    function startTypewriter() {
+      if (noteElement.innerHTML !== '') return; // prevent re-run
+      i = 0;
+      noteElement.innerHTML = '';
+      function type() {
+        if (i < noteContent.length) {
+          noteElement.innerHTML += noteContent.charAt(i);
+          i++;
+          setTimeout(type, 50); // speed of typing (lower = faster)
+        }
+      }
+      type();
+    }
+
+    // Cuteness meter animation
+    function startMeter() {
+      const progress = document.getElementById('progress');
+      const percent = document.getElementById('percent');
+      const warning = document.getElementById('warning');
+      let count = 0;
+      const target = 150;
+      const interval = setInterval(() => {
+        count += 5;
+        percent.textContent = count + '%';
+        progress.style.width = count + '%';
+        if (count >= target) {
+          clearInterval(interval);
+          percent.textContent = '150%';
+          warning.style.display = 'block';
+        }
+      }, 120);
+    }
+
+    // Envelope tap to go to note
+    document.getElementById('envelopeCard').addEventListener('click', () => {
+      goToScreen('screen4');
+    });
+  </script>
+</body>
+</html>
